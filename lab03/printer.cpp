@@ -16,12 +16,13 @@ class Printer {
     std::string postfix { "" };
 
 public:
-    Printer(std::ostream& out, std::string prefix, std::string postfix)
+    Printer(
+        std::ostream& out, const std::string prefix, const std::string postfix)
         : out(out)
         , prefix(prefix)
         , postfix(postfix) { }
 
-    template <typename T> void operator()(T x) const {
+    template <typename T> void operator()(const T& x) const {
         this->out << this->prefix << x << this->postfix;
     }
 };
@@ -42,6 +43,7 @@ int main() {
     Printer filePrinter(file, "- ", "\n");
     filePrinter(5);
     filePrinter("My text");
+    
     return 0;
 }
 

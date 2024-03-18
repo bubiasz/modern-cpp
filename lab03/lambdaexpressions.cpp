@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <cstdlib>
 #include <functional>
 #include <iostream>
 #include <list>
@@ -29,24 +30,22 @@ int main() {
 
     // 1. Sort v with respect to the distance to the center (closest first)
     int center = 50;
-    std::sort(v.begin(), v.end(), [&center](int a, int b) {
-        return (std::abs(center - a) < std::abs(center - b)) ? true : false;
-    });
+    std::sort(
+        v.begin(), v.end(), [&center](const auto a, const auto b) -> bool {
+            return (std::abs(center - a) < std::abs(center - b));
+        });
     print(v, "center 50:");
 
     // 2. Sort in increasing order but
     // - negative numbers  are after positive ones, with zero in the middle,
     // - if numbers have the same sign then odd numbers are after even ones
     // e.g.  4  < 8 < 1 < 3 < 0 <  -8 < -2 < -7 < -3
-    auto positiveEvenFirst = [](int a, int b) {
-        if ((a == 0) or (b == 0))
+    auto positiveEvenFirst = [](const auto a, const auto b) -> bool {
+        if (a * b <= 0)
             return a > b;
 
-        if ((a < 0) != (b < 0))
-            return (a < 0) ? false : true;
-
         if ((a % 2) != (b % 2))
-            return !(a % 2) ? true : false;
+            return !(a % 2);
 
         return a < b;
     };
@@ -70,9 +69,10 @@ int main() {
     // 3. generator = function without parameters that return random integer
     // number from interval [a, b] (a and b both included). Changing values of
     // a or b should change the interval used by generator.
-    srand(2022);
+    std::srand(2022);
     int a = 0, b = 40;
-    auto generator = [&a, &b]() { return rand() % (b - a + 1) + a; }; /// 3
+    auto generator
+        = [&a, &b]() -> int { return std::rand() % (b - a + 1) + a; }; // 3
 
     std::generate(v.begin(), v.end(), generator);
     print(v, "generator [0,40]:");
@@ -85,7 +85,7 @@ int main() {
     /// and step. Changing start does not change the beginning of the sequence
     /// but a change of step influences the function output.
     int start = 5, step = 2;
-    auto arithmeticGenerator = [start, &step]() mutable {
+    auto arithmeticGenerator = [start, &step]() mutable -> int {
         int s = start;
         start += step;
         return s;
@@ -104,7 +104,7 @@ int main() {
     // computes l1 norm i.e. the sum of the absolute values of elements in the
     // container. Try to use std::accumulate algorithm with another lambda
     // expression to implement it.
-    auto l1_norm = [](auto container) {
+    auto l1_norm = [](const auto& container) -> double {
         return std::accumulate(container.begin(), container.end(), 0.0,
             [](auto sum, const auto& x) { return sum + std::abs(x); });
     };
@@ -121,7 +121,7 @@ int main() {
     // 6. Function that for given array a and integer n returns
     // a function with one parameter x that computes
     // a value of a polynomial of degree n with coefficients a at the point x.
-    auto polynomial = [](double* a, int n) {
+    auto polynomial = [](const double* a, const int n) {
         return [a, n](double x) {
             double result = 0.0;
             for (int i = 0; i <= n; i++) {
