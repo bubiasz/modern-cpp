@@ -22,15 +22,15 @@ public:
     Box()
         : id(++lastID) {
         if (verbose)
-            std::cout << " Box[" << id << "] default constructor" << std::endl;
+            std::cout << " Box[" << this->id << "] default constructor" << std::endl;
     }
 
     Box(int content)
         : id(++lastID)
         , content(content) {
         if (verbose)
-            std::cout << " Box[" << id
-                      << "] constructor with content = " << content
+            std::cout << " Box[" << this->id
+                      << "] constructor with content = " << this->content
                       << std::endl;
     }
 
@@ -38,15 +38,15 @@ public:
         : id(++lastID)
         , content(box.content) {
         if (verbose)
-            std::cout << " Box[" << id << "] copy constructor from Box["
+            std::cout << " Box[" << this->id << "] copy constructor from Box["
                       << box.id << "]" << std::endl;
     }
 
     Box& operator=(const Box& box) {
         if (verbose)
-            std::cout << " Box[" << id << "] copy assignment from Box["
+            std::cout << " Box[" << this->id << "] copy assignment from Box["
                       << box.id << "]" << std::endl;
-        content = box.content;
+        this->content = box.content;
         return *this;
     }
 
@@ -54,28 +54,28 @@ public:
         : id(++lastID)
         , content(box.content) {
         if (verbose)
-            std::cout << " Box[" << id << "] move constructor from Box["
+            std::cout << " Box[" << this->id << "] move constructor from Box["
                       << box.id << "]" << std::endl;
         box.content = 0;
     }
 
     Box& operator=(Box&& box) {
         if (verbose)
-            std::cout << " Box[" << id
+            std::cout << " Box[" << this->id
                       << "] move assignment, swapping content with Box["
                       << box.id << "]" << std::endl;
-        std::swap(content, box.content);
+        std::swap(this->content, box.content);
         return *this;
     }
 
     ~Box() {
         if (verbose)
-            std::cout << " Box[" << id << "] destructor " << std::endl;
+            std::cout << " Box[" << this->id << "] destructor " << std::endl;
     }
 
     void setContent(int content) { this->content = content; }
 
-    int getContent() const { return content; }
+    int getContent() const { return this->content; }
 };
 
 int Box::lastID = 0;

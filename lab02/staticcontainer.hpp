@@ -64,8 +64,8 @@ public:
 bool Container::verbose = false;
 
 inline Container operator+(const Container& p1, const Container& p2) {
-    Container suma(p1.getContent() + p2.getContent());
-    return suma;
+    Container sum(p1.getContent() + p2.getContent());
+    return sum;
 }
 
 #endif /* staticcontainer_hpp */
