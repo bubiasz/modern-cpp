@@ -1,3 +1,10 @@
+//
+//  compare.cpp
+//  lab04
+//
+//  Created by Jakub Matysek on 19/03/2024.
+//
+
 #include <cstring>
 #include <iostream>
 
