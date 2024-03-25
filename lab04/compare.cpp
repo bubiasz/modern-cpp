@@ -26,7 +26,7 @@ int compare(T* a, T* b) {
 }
 
 template <>
-int compare<const char>(const char* a, const char* b) {
+int compare(const char* a, const char* b) {
     return std::strcmp(a, b) < 0 ? 1 : std::strcmp(b, a) < 0 ? -1 : 0;
 }
 
