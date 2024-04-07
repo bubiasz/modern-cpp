@@ -26,22 +26,22 @@ public:
 
     // converting constructor, increases numberOfPairs
     template <typename P, typename R>
-    explicit Pair(const Pair<P, R>&pair);
+    explicit Pair(const Pair<P, R>& pair);
 
     // destructor, decreases numberOfPair
     ~Pair();
 
     // returns first, mark it inline
-    constexpr T getFirst() const; 
+    constexpr T getFirst() const;
 
     // returns second, mark it inline
-    constexpr S getSecond() const; 
+    constexpr S getSecond() const;
 
     // returns a reversed Pair
     constexpr Pair<S, T> reverse() const;
 
     // return the number of existing objects of Pair<T,S>
-    constexpr static int getNumberOfPairs(); 
+    constexpr static int getNumberOfPairs();
 
     // friend declaration with single template function
     friend std::ostream& operator<< <>(std::ostream& out, const Pair& pair);
