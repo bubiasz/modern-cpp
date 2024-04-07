@@ -1,3 +1,10 @@
+//
+//  test_staticvector.cpp
+//  lab05
+//
+//  Created by Jakub Matysek on 02/04/2024.
+//
+
 #include "../staticvector.hpp"
 #include <iomanip>
 #include <iostream>
@@ -31,7 +38,8 @@ int main() {
 
     return 0;
 }
-/** Expected output:
+
+/* Expected output
 m0 = 0.00 0.00 0.00 0.00
 m1 = 1.00 2.00 3.00 4.00
 m1 = 1.00 2.00 -5.00 -20.00

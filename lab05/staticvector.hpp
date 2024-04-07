@@ -13,6 +13,7 @@
 #include <cmath>
 #include <iostream>
 #include <memory>
+#include <stdexcept>
 #include <vector>
 
 class VectorException : public std::runtime_error {
@@ -56,10 +57,6 @@ public:
         return this->data[index];
     }
 
-    constexpr size_t size() const {
-        return N;
-    }
-
     template <size_t M>
     Vector<T, N> operator+(const Vector<T, M>& x) {
         if (x.size() != N) {
@@ -81,19 +78,23 @@ public:
         return result;
     }
 
+    friend std::ostream& operator<<(std::ostream& out, const Vector& x) {
+        for (auto element : x.data) {
+            out << element << " ";
+        }
+        return out;
+    }
+
+    constexpr size_t size() const {
+        return N;
+    }
+
     const T& get(size_t index) const {
         return this->data[index];
     }
 
     void set(size_t index, const T& value) {
         this->data[index] = value;
-    }
-
-    friend std::ostream& operator<<(std::ostream& out, const Vector& x) {
-        for (auto element : x.data) {
-            out << element << " ";
-        }
-        return out;
     }
 };
 
