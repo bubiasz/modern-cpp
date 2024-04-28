@@ -70,6 +70,19 @@ public:
         return result;
     }
 
+    template <typename S, size_t M>
+    operator Vector<S, M>() const {
+        Vector<S, M> result;
+        size_t i;
+        for (i = 0; i < std::min(M, N); ++i) {
+            result[i] = static_cast<S>(this->data[i]);
+        }
+        while (i < M) {
+            result[i++] = S();
+        }
+        return result;
+    }
+
     operator Vector<T, 0>() const {
         Vector<T, 0> result(N);
         for (size_t i = 0; i < N; ++i) {
