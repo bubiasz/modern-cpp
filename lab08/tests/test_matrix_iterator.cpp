@@ -17,7 +17,7 @@ int main() {
         { 9, 10, 11, 12 } }); // constructor from initialization_list
     std::cout << std::fixed << std::setprecision(2);
     std::cout << "Matrix m\n";
-    
+
     for (auto elem : m)
         std::cout << std::setw(6) << elem << " ";
 
@@ -46,11 +46,11 @@ int main() {
     }
     const auto mconst = m;
     std::cout << " mconst = ";
-    
+
     for (auto x : m) {
         std::cout << x << " ";
     }
-    
+
     std::cout << std::endl;
     return 0;
 }

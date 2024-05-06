@@ -33,16 +33,31 @@ class Range {
     T step;
 
 public:
-    Range(T stop) : start(0), stop(stop), step(1) {}
-    Range(T start, T stop) : start(start), stop(stop), step(1) {}
-    Range(T start, T stop, T step) : start(start), stop(stop), step(step) {}
+    Range(T stop)
+        : start(0)
+        , stop(stop)
+        , step(1) {
+    }
+    Range(T start, T stop)
+        : start(start)
+        , stop(stop)
+        , step(1) {
+    }
+    Range(T start, T stop, T step)
+        : start(start)
+        , stop(stop)
+        , step(step) {
+    }
 
     class iterator {
         T value;
         T step;
 
     public:
-        iterator(T value, T step) : value(value), step(step) {}
+        iterator(T value, T step)
+            : value(value)
+            , step(step) {
+        }
 
         T operator*() const {
             return value;

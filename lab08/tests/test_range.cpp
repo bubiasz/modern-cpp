@@ -13,14 +13,14 @@ int main() {
     for (auto x : r1)
         std::cout << x << " "; // 1 3 5 7
     std::cout << "\n";
-    
+
     for (auto x : r1)
         std::cout << "--";
     std::cout << "\n";
 
     Range<double> r2(1, 9, 1.5);
     auto it = r2.begin();
-    
+
     while (it != r2.end()) {
         std::cout << *it++ << " ";
     }
